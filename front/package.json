@@ -1,0 +1,27 @@
+{
+  "name": "react-stack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "classnames": "*",
+    "react": "*",
+    "react-style": "*"
+  },
+  "devDependencies": {
+    "babel-runtime": "*",
+    "babel-loader": "*",
+    "css-loader": "*",
+    "react-hot-loader": "*",
+    "sass-loader": "*",
+    "style-loader": "*",
+    "webpack": "*",
+    "webpack-dev-server": "*"
+  }
+}
