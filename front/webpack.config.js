@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 var buildPath = path.resolve(__dirname, 'build');
-var appPath = path.resolve(__dirname, 'app', 'app.jsx');
+var appPath = path.resolve(__dirname, 'app', 'init.jsx');
 
 
 var config = {
@@ -32,7 +32,11 @@ var config = {
             }
         ),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        new webpack.NoErrorsPlugin(),
+        new webpack.ProvidePlugin({
+            React: "react/addons",
+            cx: "classnames",
+        })
     ],
 
     module : {

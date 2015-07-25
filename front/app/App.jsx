@@ -1,8 +1,8 @@
-var React = require('react/addons');
+
 module.exports = React.createClass({
     render () {
         return (
-            <div>ok </div>
+            <div className={ cx({'koko': true}) }>ok </div>
         );
     }
 });
