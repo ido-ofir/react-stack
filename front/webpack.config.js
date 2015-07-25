@@ -1,27 +1,38 @@
 var webpack = require('webpack');
 var path = require('path');
+var nodeModulesPath = path.resolve(__dirname, 'node_modules');
+var buildPath = path.resolve(__dirname, 'build');
+var appPath = path.resolve(__dirname, 'app', 'app.jsx');
+
 
 var config = {
 
     entry : {
         app : [
-            'webpack/hot/dev-server',
             'webpack-dev-server/client?http://localhost:3000',
-            './init.jsx'
-        ],
-        vendors : []
+            'webpack/hot/only-dev-server',
+            appPath
+        ]
     },
 
-    devtool : '#inline-source-map',
+    devtool : 'eval',
 
-    output : {
+    output: {
         path : path.join(__dirname, 'build'),
-        filename : 'bundle.[name].js'
+        filename : 'bundle.js',
+        publicPath: '/build/'
     },
 
     plugins : [
+        new webpack.optimize.CommonsChunkPlugin(
+            "vendor",   // chunkName
+            "vendor.bundle.js",  // filename
+            function (module, count) {    // include all modules not in 'appPath' folder in the vendor bundle
+                return (module.resource && module.resource.indexOf(appPath) === -1);;
+            }
+        ),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.optimize.CommonsChunkPlugin('commons.js')
+        new webpack.NoErrorsPlugin()
     ],
 
     module : {
@@ -38,22 +49,19 @@ var config = {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loaders: ['react-hot', 'babel-loader?stage=1&optional=runtime']
-            }
-        ],
-        noParse: []
+            },
+            { test: /.gif$/, loader: "url-loader?mimetype=image/png" },
+            { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,   loader: "url?limit=10000&mimetype=application/font-woff" },
+            { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,    loader: "url?limit=10000&mimetype=application/octet-stream" },
+            { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,    loader: "file" },
+            { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,    loader: "url?limit=10000&mimetype=image/svg+xml" }
+        ]
     },
     resolve: {
-        alias: {},
         // you can now require('file') instead of require('file.js')
         extensions: ['', '.js', '.jsx']
     }
 };
-
-function addVendor(name, path) {
-    config.resolve.alias[name] = path;
-    config.module.noParse.push(new RegExp(path));
-    config.vendors.entry.push(name);
-}
 
 
 module.exports = config;
