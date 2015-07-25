@@ -14,18 +14,19 @@
     "react": "^0.13.3"
   },
   "devDependencies": {
-    "babel-runtime": "*",
     "babel-core": "*",
     "babel-loader": "*",
+    "babel-runtime": "*",
     "css-loader": "*",
-    "react-hot-loader": "*",
+    "file-loader": "^0.8.4",
     "node-sass": "*",
+    "open": "0.0.5",
+    "react-hot-loader": "*",
     "sass-loader": "*",
+    "source-list-map": "^0.1.5",
+    "source-map": "^0.4.3",
     "style-loader": "*",
     "url-loader": "^0.5.6",
-    "file-loader": "^0.8.4",
-    "source-map": "^0.4.3",
-    "source-list-map": "^0.1.5",
     "webpack": "*",
     "webpack-dev-server": "*"
   }
