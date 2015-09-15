@@ -35,10 +35,12 @@ var config = {
         new webpack.NoErrorsPlugin(),
         new webpack.ProvidePlugin({
             React: "react/addons",
-            cx: "classnames",
+            cx: "classnames"
         })
     ],
-
+    resolve: {
+        root: appPath
+    },
     module : {
         loaders : [
             {
