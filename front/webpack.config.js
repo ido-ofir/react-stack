@@ -8,11 +8,7 @@ var appPath = path.resolve(__dirname, 'app', 'init.jsx');
 var config = {
 
     entry : {
-        app : [
-            'webpack-dev-server/client?http://localhost:3000',
-            'webpack/hot/only-dev-server',
-            appPath
-        ]
+        app : [ appPath ]   // this array is modified by devServ.js in dev
     },
 
     devtool : 'eval',

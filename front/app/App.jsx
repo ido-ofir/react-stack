@@ -1,8 +1,14 @@
 
+var layout = require('./components/layout');
+var Box = layout.Box;
+
 module.exports = React.createClass({
     render () {
         return (
-            <div className={ cx({'koko': true}) }>ok </div>
+          <Box width="200px" right="0">
+            <input/>
+            <button>Send</button>
+          </Box>
         );
     }
 });

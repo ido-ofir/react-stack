@@ -1,11 +1,17 @@
+
 // Require any waterline compatible adapters here
 var diskAdapter = require('sails-disk');
-    // mysqlAdapter = require('sails-mysql');
 
-
-// Build A Config Object
 var config = {
-  authenticate: false,
+  domain: 'http://localhost',
+  port: 4000,
+  allowOrigin: ['http://localhost:3000'],
+  authorize: true,  //
+  authentication: {
+    secret: 'kokoloko',
+    adapter: diskAdapter,    // adapter for session authentication
+    autoRemoveInterval: 6 * 60  // expired sessions will be cleaned every 6h
+  },
   orm: {
     adapters: {
       'default': diskAdapter,
@@ -15,15 +21,14 @@ var config = {
       localDisk: {
         adapter: 'disk'
       }
-      //
-      // myLocalMySql: {
-      //   adapter: 'mysql',
-      //   host: 'localhost',
-      //   database: 'foobar'
-      // }
     },
     defaults: {
       migrate: 'alter'
+    }
+  },
+  permissions: {
+    root: {
+      exclude: []
     }
   }
 };
